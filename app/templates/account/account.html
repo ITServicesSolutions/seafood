@@ -1,0 +1,418 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+<!-- Start All Title Box -->
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Mon compte</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+                    <li class="breadcrumb-item active">Mon compte</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End All Title Box -->
+
+<!-- Start My Account  -->
+<div class="my-account-box-main">
+    <div class="container">
+        <div class="my-account-page">
+            <div class="row">
+                <div class="col-lg-4 col-md-12">
+                    <div class="account-box">
+                        <div class="service-box">
+                            <div class="service-icon">
+                                <a class="service-link" href="#user" data-toggle="modal" data-target="#userModal"> <i class="fa fa-user"></i> </a>
+                                <div class="modal fade bd-example-modal-lg" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="container">
+                                                <div class="card card-register mx-auto mt-5">
+                                                    <div class="card-header">Information personnelle</div>
+                                                    <div class="card-body">
+                                                        <form class="needs-validation" method="POST" novalidate>
+                                                            {%csrf_token%}
+                                                            <div id="form_masque">{{info_form.as_p}}</div>
+                                                            <div class="row">
+                                                                <div class="col-md-6 mb-3">
+                                                                    <label for="firstName">Prenom *</label>
+                                                                    <input type="text" name="prenom" class="form-control" id="prenom" placeholder="" required value="{{request.user.client.prenom}}">
+                                                                    <div class="invalid-feedback"> Valid first name is required. </div>
+                                                                </div>
+                                                                <div class="col-md-6 mb-3">
+                                                                    <label for="lastName">Nom *</label>
+                                                                    <input type="text" name="nom" class="form-control" id="nom" placeholder="" required value="{{request.user.client.nom}}">
+                                                                    <div class="invalid-feedback"> Valid last name is required. </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="address">Entreprise </label>
+                                                                <input type="text" name="entreprise" class="form-control" id="adresse" placeholder="" value="{{request.user.client.entreprise}}">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="address">Téléphone *</label>
+                                                                <input type="tel" name="mobile" class="form-control" id="mobile" placeholder="" required value="{{request.user.client.mobile}}">
+                                                                <div class="invalid-feedback"> Please enter your shipping address. </div>
+                                                            </div>
+                                                            <button class="btn btn-primary btn-block">Enregistrer</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="service-desc">
+                                <h4>Informations personnelles</h4>
+                                <p>Track, return, or buy things again</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="account-box">
+                        <div class="service-box">
+                            <div class="service-icon">
+                                <a class="service-link" href="#adresse" data-toggle="modal" data-target="#adresseModal"> <i class="fas fa-map-marker-alt"></i> </a>
+                                <div class="modal fade bd-example-modal-lg" id="adresseModal" tabindex="-1" role="dialog" aria-labelledby="adresseModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="container">
+                                                <div class="card card-register mx-auto mt-5">
+                                                    <div class="card-header">Adresse de livraison</div>
+                                                    <div class="card-body">
+                                                        <form class="needs-validation" method="POST" action="" novalidate>
+                                                            {% csrf_token %}
+                                                            <div id="form_masque">{{adresse_form.as_p}}</div>
+                                                            <div class="row">
+                                                                <div class="col-md-6 mb-3">
+                                                                    <label for="adresse">Adresse *</label>
+                                                                    <input type="text" name="adresse" class="form-control" id="adresse" placeholder="" value="{{request.user.client.adresse.adresse}}" required>
+                                                                    <div class="invalid-feedback"> Valid first name is required. </div>
+                                                                </div>
+                                                                <div class="col-md-6 mb-3">
+                                                                    <label for="lastName">Ville *</label>
+                                                                    <input type="text" name="ville" class="form-control" id="ville" placeholder="" value="{{request.user.client.adresse.ville}}" required>
+                                                                    <div class="invalid-feedback"> Valid last name is required. </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-6 mb-3">
+                                                                    <label for="pays">Quartier *</label>
+                                                                    <input type="text" name="quartier" class="form-control" id="pays" placeholder="" value="{{request.user.client.adresse.quartier}}" required>
+                                                                    <div class="invalid-feedback"> Valid first name is required. </div>
+                                                                </div>
+                                                                <div class="col-md-6 mb-3">
+                                                                    <label for="code_postal">Code postal *</label>
+                                                                    <input type="text" name="code_postal" class="form-control" id="code_postal" placeholder="" value="{{request.user.client.adresse.code_postal}}" required>
+                                                                    <div class="invalid-feedback"> Valid last name is required. </div>
+                                                                </div>
+                                                            </div>
+                                                            <button class="btn btn-primary btn-block">Enregistrer</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="service-desc">
+                                <h4>Adresse</h4>
+                                <p>Edit addresses for orders and gifts</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="account-box">
+                        <div class="service-box">
+                            <div class="service-icon">
+                                <a class="service-link" href="#" data-toggle="modal" data-target="#securiteModal"><i class="fa fa-lock"></i> </a>
+                                <div class="modal fade bd-example-modal-lg" id="securiteModal" tabindex="-1" role="dialog" aria-labelledby="securiteModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="container">
+                                                <div class="card card-register mx-auto mt-5">
+                                                    <div class="card-header">Connexion & Sécurité</div>
+                                                    <div class="card-body">
+                                                        ...
+                                                    </div>
+                                                </div>
+                                                <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="service-desc">
+                                <h4>Connexion &amp; sécurité</h4>
+                                <p>Edit login, name, and mobile number</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="account-box">
+                        <div class="service-box">
+                            <div class="service-icon">
+                                <a class="service-link" href="#" data-toggle="modal" data-target="#commandeModal"> <i class="fa fa-gift"></i> </a>
+                                <div class="modal fade bd-example-modal-lg" id="commandeModal" tabindex="-1" role="dialog" aria-labelledby="commandeModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="container">
+                                                <div class="card card-register mx-auto mt-5">
+                                                    <div class="card-header">Commandes</div>
+                                                    <div class="card-body">
+                                                        <div class="col-lg-12">
+                                                            <div class="table-main table-responsive">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Images</th>
+                                                                            <th>Nom du produit</th>
+                                                                            <th>Prix</th>
+                                                                            <th>Quantité</th>
+                                                                            <th>Total</th>
+                                                                            <th>Date</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="thumbnail-img">
+                                                                                <a href="#">
+                                                                                    <img class="img-fluid" src="images/img-pro-01.jpg" alt="" />
+                                                                                </a>
+                                                                            </td>
+                                                                            <td class="name-pr">
+                                                                                <a href="#">
+                                                                                Lorem ipsum dolor sit amet
+                                                                            </a>
+                                                                            </td>
+                                                                            <td class="price-pr">
+                                                                                <p>$ 80.0</p>
+                                                                            </td>
+                                                                            <td class="quantity-box">4</td>
+                                                                            <td class="total-pr">
+                                                                                <p>$ 150.0</p>
+                                                                            </td>
+                                                                            <td class="remove-pr">
+                                                                                <p>22/07/2020</p>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td class="thumbnail-img">
+                                                                                <a href="#">
+                                                                                    <img class="img-fluid" src="images/img-pro-02.jpg" alt="" />
+                                                                                </a>
+                                                                            </td>
+                                                                            <td class="name-pr">
+                                                                                <a href="#">
+                                                                                Lorem ipsum dolor sit amet
+                                                                            </a>
+                                                                            </td>
+                                                                            <td class="price-pr">
+                                                                                <p>$ 60.0</p>
+                                                                            </td>
+                                                                            <td class="quantity-box">4</td>
+                                                                            <td class="total-pr">
+                                                                                <p>$ 80.0</p>
+                                                                            </td>
+                                                                            <td class="remove-pr">
+                                                                                <p>15/05/2020</p>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="service-desc">
+                                <h4>Your Orders</h4>
+                                <p>Track, return, or buy things again</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="account-box">
+                        <div class="service-box">
+                            <div class="service-icon">
+                                <a class="service-link" href="#" data-toggle="modal" data-target="#cartModal"> <i class="fa fa-credit-card"></i> </a>
+                                <div class="modal fade bd-example-modal-lg" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="container">
+                                                <div class="card card-register mx-auto mt-5">
+                                                    <div class="card-header">Methode de payment</div>
+                                                    <div class="card-body">
+                                                        <form class="needs-validation" novalidate>
+                                                            <div class="row">
+                                                                <div class="col-md-6 mb-3">
+                                                                    <label for="mtn">MTN *</label>
+                                                                    <input type="text" name="mtn" class="form-control" id="mtn" placeholder="" value="+22991326259">
+                                                                    <div class="invalid-feedback"> Valid first name is required. </div>
+                                                                </div>
+                                                                <div class="col-md-6 mb-3">
+                                                                    <label for="lastName">MOOV *</label>
+                                                                    <input type="text" name="moov" class="form-control" id="moov" placeholder="" value="+22999963880">
+                                                                    <div class="invalid-feedback"> Valid last name is required. </div>
+                                                                </div>
+                                                            </div>
+                                                            <button class="btn btn-primary btn-block">Enregistrer</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="service-desc">
+                                <h4>Méthode de payements</h4>
+                                <p>Edit or add payment methods</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="account-box">
+                        <div class="service-box">
+                            <div class="service-icon">
+                                <a class="service-link" href="#" data-toggle="modal" data-target="#wishModal"> <i class="fa fa-heart"></i> </a>
+                                <div class="modal fade bd-example-modal-lg" id="wishModal" tabindex="-1" role="dialog" aria-labelledby="wishModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="container">
+                                                <div class="card card-register mx-auto mt-5">
+                                                    <div class="card-header">Préférences</div>
+                                                    <div class="card-body">
+
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                                <div class="table-main table-responsive">
+                                                                    <table class="table">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Images</th>
+                                                                                <th>Product Name</th>
+                                                                                <th>Unit Price </th>
+                                                                                <th>Stock</th>
+                                                                                <th>Add Item</th>
+                                                                                <th>Remove</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="thumbnail-img">
+                                                                                    <a href="#">
+                                                                                        <img class="img-fluid" src="images/img-pro-01.jpg" alt="" />
+                                                                                    </a>
+                                                                                </td>
+                                                                                <td class="name-pr">
+                                                                                    <a href="#">
+                                                                                        Lorem ipsum dolor sit amet
+                                                                                    </a>
+                                                                                </td>
+                                                                                <td class="price-pr">
+                                                                                    <p>$ 80.0</p>
+                                                                                </td>
+                                                                                <td class="quantity-box">In Stock</td>
+                                                                                <td class="add-pr">
+                                                                                    <a class="btn hvr-hover" href="#">Add to Cart</a>
+                                                                                </td>
+                                                                                <td class="remove-pr">
+                                                                                    <a href="#">
+                                                                                        <i class="fas fa-times"></i>
+                                                                                    </a>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="thumbnail-img">
+                                                                                    <a href="#">
+                                                                                        <img class="img-fluid" src="images/img-pro-02.jpg" alt="" />
+                                                                                    </a>
+                                                                                </td>
+                                                                                <td class="name-pr">
+                                                                                    <a href="#">
+                                                                                        Lorem ipsum dolor sit amet
+                                                                                    </a>
+                                                                                </td>
+                                                                                <td class="price-pr">
+                                                                                    <p>$ 60.0</p>
+                                                                                </td>
+                                                                                <td class="quantity-box">In Stock</td>
+                                                                                <td class="add-pr">
+                                                                                    <a class="btn hvr-hover" href="#">Add to Cart</a>
+                                                                                </td>
+                                                                                <td class="remove-pr">
+                                                                                    <a href="#">
+                                                                                        <i class="fas fa-times"></i>
+                                                                                    </a>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="thumbnail-img">
+                                                                                    <a href="#">
+                                                                                        <img class="img-fluid" src="images/img-pro-03.jpg" alt="" />
+                                                                                    </a>
+                                                                                </td>
+                                                                                <td class="name-pr">
+                                                                                    <a href="#">
+                                                                                        Lorem ipsum dolor sit amet
+                                                                                    </a>
+                                                                                </td>
+                                                                                <td class="price-pr">
+                                                                                    <p>$ 30.0</p>
+                                                                                </td>
+                                                                                <td class="quantity-box">In Stock</td>
+                                                                                <td class="add-pr">
+                                                                                    <a class="btn hvr-hover" href="#">Add to Cart</a>
+                                                                                </td>
+                                                                                <td class="remove-pr">
+                                                                                    <a href="#">
+                                                                                        <i class="fas fa-times"></i>
+                                                                                    </a>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="service-desc">
+                                    <h4>Liste des souhaits</h4>
+                                    <p>View benefits and payment settings</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End My Account -->
+
+{%endblock content%}

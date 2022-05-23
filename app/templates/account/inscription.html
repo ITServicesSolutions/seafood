@@ -1,0 +1,54 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>INSCRIPTION</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+                    <li class="breadcrumb-item active">INSCRIPTION</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="login_box_area section-margin">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="login_box_img">
+                    <div class="hover">
+                        <h4>Vous avez déja un compte</h4>
+                        <p>Connectez vous et profitez de nos produits en produits en promotion</p>
+                        <a class="btn btn-dark" href="{% url 'login' %}">Connectez - vous</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="login_form_inner register_form_inner">
+                    <h3>Créer un compte</h3>
+                    <form class="row login_form" method="POST" action="#/" id="register_form">
+                        {%csrf_token%}
+                        <div class="col-md-12 form-group">
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Nom d'utilisateur" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <input type="text" class="form-control" id="email" name="email" placeholder="Adresse mail" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <input type="password" class="form-control" id="password1" name="password1" placeholder="Mot de passe" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirmation de mot de passe" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <button type="submit" value="submit" class="btn btn-dark w-100">Inscription</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br> {%endblock content%}
